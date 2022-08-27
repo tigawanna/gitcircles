@@ -50,9 +50,10 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
              h-[100%] w-[100%] rounded-[5%]  m-1"
               src={user?.avatarUrl as string}
               alt=""
-              height={"50px"}
-              width={"50px"}
+              height={"40px"}
+              width={"40px"}
               layout="responsive"
+              priority
             />
           </div>
 

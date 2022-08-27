@@ -140,7 +140,7 @@ return (
     />
     </div>
     </div>
-    <div className=" h-[60%] bg-purple-800 mt-24">
+    <div className=" h-[90%]  mt-24">
       {children}
     </div>
     </ViewerContext.Provider>

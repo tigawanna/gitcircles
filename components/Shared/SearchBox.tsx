@@ -70,7 +70,8 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
       // keyword.word.length > 3 &&
       // !search_query?.error &&
       // !search_query?.isFetched &&
-      search_query.isFetching
+      search_query.isFetching &&
+      title !== "filter repo"
       ? (
         <div
           style={{ position: "fixed", top: "100px" }}
@@ -84,7 +85,10 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
 
       {search_query?.isFetched &&
       results?.length === 0 &&
-      keyword.word !== "" ? (
+      keyword.word !== "" &&
+      title !== "filter repo"
+      
+      ? (
         <div
           style={{ position: "fixed", top: "100px" }}
           className=" w-[90%] md:w-[50%]   flex-center h-[10%] 
@@ -94,7 +98,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
           no matches, try different key words
         </div>
       ) : null}
-      {results && keyword.word !== "" ? (
+      {results && keyword.word !== "" && title !== "filter repo" ? (
         <div
           style={{ position: "fixed", top: "100px" }}
           className=" w-[95%]  flex items-center justify-center 

@@ -27,14 +27,14 @@ token:string
 export const Repository: React.FC<RepositoryProps> = ({username,token}) => {
 const [keyword, setKeyword] = useState({word:''})
 
-
+console.log("username  ==== ",username)
   const query = useInfiniteGQLQuery(
     ["repositories", username as string],
     token,
     REPOS,
     {
-      name: username,
-      first: 25,
+      name: username as string,
+      first: 20,
       after: null,
     },
     {
@@ -71,9 +71,9 @@ return <div className="h-full w-full  flex-center ">Loading....</div>;
 const repos = data?.pages;
 const extras = repos[repos.length - 1].user?.repositories;
 const hasMore = totalRepsLoaded !== extras?.totalCount;
-// console.log("query page info ==== ",extras.pageInfo)
+console.log("repo filter results ==== ",results)
 return (
-  <div className="min-h-fit w-full flex flex-col justify-between">
+  <div className="min-h-screen w-full  flex flex-col justify-start">
     <div
       className="h-[10%] p-1 w-full flex-center my-5 sticky top-[50px] z-50
      bg-white dark:bg-slate-800 transition duration-500"
@@ -197,17 +197,18 @@ return (
           {repo?.stargazers?.totalCount}
         </div>
       ) : null}
-     { repo?.visibility === "PRIVATE" ? 
-      <div className="flex-center">
-      <TheIcon Icon={FaLock} size={""} color={"red"} />
-      </div>:null }
+      {repo?.visibility === "PRIVATE" ? (
+        <div className="flex-center">
+          <TheIcon Icon={FaLock} size={""} color={"red"} />
+        </div>
+      ) : null}
 
       <div className="flex-center">{repo?.diskUsage} kbs</div>
       <div className="flex-center">
-        <a target="_blank" rel="noreferrer" ref={vslink}>
-          <TheIcon Icon={SiVisualstudiocode} size={"18"} color={""} />
+        <a target="_blank" rel="noreferrer" href={repo.url} className="mx-1">
+          <TheIcon Icon={SiVisualstudiocode} size={"18"} color={"blue"} />
         </a>
-        <a target="_blank" rel="noreferrer" href={repo.url}>
+        <a target="_blank" rel="noreferrer" href={repo.url} className="mx-1">
           <TheIcon Icon={SiGithub} size={"18"} color={""} />
         </a>
       </div>

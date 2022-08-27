@@ -5,6 +5,7 @@ import GlobalContext from '../utils/context/GlobalsContext';
 import ViewerContext from './../utils/context/ViewerContext';
 import { GrHome } from "react-icons/gr";
 import { TheIcon } from './../components/Shared/TheIcon';
+import { Repository } from '../components/repo/Repository';
 
 const Home: NextPage = (props:any) => {
 const viewerCtx = useContext(ViewerContext)
@@ -19,7 +20,11 @@ const viewerCtx = useContext(ViewerContext)
         user={viewerCtx?.value?.viewer}
       />
       </div>
-
+       <div className="h-[80%]">
+       <Repository 
+        token={viewerCtx?.value?.token as string}
+        username={viewerCtx?.value?.viewer?.login as string}/>
+       </div>
 
     </div>
   );
